@@ -1,0 +1,12 @@
+_target_: bsuite.load_from_id
+bsuite_id: "cartpole/0"
+# _target_: bsuite.load
+# # experiment_name: "cartpole_swingup"
+# experiment_name: "cartpole"
+# kwargs:
+#   seed: ${experiment.random_seed}
+# _target_: dm_control.suite.load
+# _target_: dmc2gym.make
+# domain_name: "cartpole"
+# task_name: "swingup"
+# seed: ${experiment.random_seed}

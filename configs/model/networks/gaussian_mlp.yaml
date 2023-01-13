@@ -1,0 +1,34 @@
+- _target_: torch.nn.Sequential
+  _args_:
+    - _target_: torch.nn.Linear
+      in_features: ${input_dim}
+      out_features: 10
+    - _target_: torch.nn.ReLU
+    - _target_: torch.nn.Linear
+      in_features: 10
+      out_features: 10
+    - _target_: torch.nn.ReLU
+    - _target_: torch.nn.Linear
+      in_features: 10
+      out_features: 10
+    - _target_: torch.nn.ReLU
+    - _target_: torch.nn.Linear
+      in_features: 10
+      out_features: 12 # TODO set this automatically
+- _target_: torch.nn.Sequential
+  _args_:
+    - _target_: torch.nn.Linear
+      in_features: ${input_dim}
+      out_features: 10
+    - _target_: torch.nn.ReLU
+    - _target_: torch.nn.Linear
+      in_features: 10
+      out_features: 10
+    - _target_: torch.nn.ReLU
+    - _target_: torch.nn.Linear
+      in_features: 10
+      out_features: 10
+    - _target_: torch.nn.ReLU
+    - _target_: torch.nn.Linear
+      in_features: 10
+      out_features: 12 # TODO set this automatically

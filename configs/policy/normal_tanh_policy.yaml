@@ -1,0 +1,13 @@
+_target_: neural_tangents.stax.serial
+_args_:
+  - _target_: neural_tangents.stax.Dense
+    out_dim: 10
+  - _target_: neural_tangents.stax.Relu
+  - _target_: neural_tangents.stax.Dense
+    out_dim: 10
+  - _target_: neural_tangents.stax.Relu
+  - _target_: neural_tangents.stax.Dense
+    out_dim: 10
+  - _target_: neural_tangents.stax.Relu
+  - _target_: neural_tangents.stax.Dense
+    out_dim: ${action_output_dim}

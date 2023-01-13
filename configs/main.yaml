@@ -1,0 +1,44 @@
+defaults:
+  # - model: lllaplace # last layer laplace
+  - model: probabilistic_ensemble
+  - env: cartpole
+  # - network: mlp_relu
+  - network: gaussian_mlp
+  # - likelihood: gaussian
+  # Disable logging by Hydra
+  - override hydra/job_logging: none
+  - override hydra/hydra_logging: none
+  - _self_
+
+observation_dim: 4
+action_dim: 1
+input_dim: 5
+output_dim: ${observation_dim}
+
+training:
+  batch_size: 64
+  max_epochs: 1000
+
+dataset:
+  num_episodes: 20
+  replay_buffer_capacity: 100000
+
+experiment:
+  random_seed: 42
+  name: "ensemble"
+
+wandb:
+  entity: "aidanscannell"
+  project: "mbrl-under-uncertainty"
+  # log_artifacts: True
+  run_name: "${experiment.name}"
+  tags:
+    # - ${env.bsuite_id}
+    - "random_seed=${experiment.random_seed}"
+    - "name=${experiment.name}"
+
+hydra:
+  job:
+    chdir: False
+  run:
+    dir: ""

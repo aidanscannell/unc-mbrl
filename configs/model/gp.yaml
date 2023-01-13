@@ -1,0 +1,9 @@
+model:
+  _target_: gpflow.models.GPR
+  kernel:
+    _target_: gpflow.kernels.Matern52
+  mean_funcion:
+    _target: gpflow.functions.constant
+    output_dim: ${output_dim}
+training:
+  maxiter: 1000

@@ -1,0 +1,25 @@
+# defaults:
+#   - networks: gaussian_mlp
+
+# _target_: src.models.ensemble.ProbabilisticEnsemble
+# models:
+#   network
+# - network
+# - network
+
+# _target_: src.train.GaussianMLP
+_target_: src.models.ensemble.ProbabilisticEnsemble
+ensemble_size: 3
+in_size: ${input_dim}
+out_size: ${output_dim} # TODO set this automatically
+features:
+  - 10
+  - 10
+  - 10
+  - 10
+activations:
+  - _target_: torch.nn.ReLU
+  - _target_: torch.nn.ReLU
+  - _target_: torch.nn.ReLU
+  - _target_: torch.nn.ReLU
+  # - _target_: src.models.activations.Sin

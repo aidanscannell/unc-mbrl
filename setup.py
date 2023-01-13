@@ -40,10 +40,15 @@ keywords = [
 python_requires = "~=3.7"
 
 install_requires = [
-    "pytorch",
+    "torch",
+    "functorch",  # needed for vmap
     "laplace",
     "numpy",
     "matplotlib",
+    "gymnasium",
+    "mujoco",
+    "torchtyping",
+    "pytorch_lightning",
 ]
 extras_require = {
     # "experiments": ["hydra-core", "palettable", "tikzplotlib"],
