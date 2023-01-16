@@ -1,9 +1,6 @@
-model:
-  _target_: gpflow.models.GPR
-  kernel:
-    _target_: gpflow.kernels.Matern52
-  mean_funcion:
-    _target: gpflow.functions.constant
-    output_dim: ${output_dim}
-training:
-  maxiter: 1000
+_target_: src.models.gp.GPDynamicsModel
+in_size: ${input_dim}
+out_size: ${output_dim}
+learning_rate: 0.001
+num_iterations: 1000
+delta_state: True
