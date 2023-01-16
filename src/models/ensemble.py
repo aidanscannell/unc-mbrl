@@ -5,7 +5,10 @@ from typing import List, Optional
 import torch
 import torch.distributions as td
 import torch.nn as nn
-from functorch import vmap
+
+from src.types import Prediction, Observation, Action
+
+# from functorch import vmap
 
 from .networks import GaussianMLP
 from pytorch_lightning import LightningModule
@@ -38,7 +41,10 @@ class ProbabilisticEnsemble(LightningModule):
                 )
             )
 
-    # # def forward(self, observation: Observation, action: Action) -> Prediction:
+    def predict(self, observation: Observation, action: Action) -> Prediction:
+        x = torch.concat([observation, action], -1)
+        return self.forward(x)
+
     def forward(self, x) -> td.MixtureSameFamily:
         def single_forward(model):
             y = model(x)
@@ -57,9 +63,14 @@ class ProbabilisticEnsemble(LightningModule):
         vars = torch.stack(vars, -1)
         # means, stddevs = vmap(single_forward)(self.models)
 
+        f_vars = torch.var(means, 0)  # variance over ensembles
+        f_dist = td.Normal(loc=means, scale=torch.sqrt(f_vars))
+
         mix = td.Categorical(torch.ones(self.ensemble_size) / self.ensemble_size)
         comp = td.Normal(loc=means, scale=torch.sqrt(vars))
         gmm = td.MixtureSameFamily(mix, comp)
+
+        Prediction(latent=f_dist, output=gmm)
         return gmm  # [N, output_dim, ensemble_size]
 
     def single_forward(self, x, ensemble_idx: int) -> td.Normal:

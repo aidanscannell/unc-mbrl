@@ -1,9 +1,10 @@
 defaults:
-  # - model: lllaplace # last layer laplace
-  - model: probabilistic_ensemble
+  # - model: laplace
+  - model: gp
+  # - model: probabilistic_ensemble
   - env: cartpole
-  # - network: mlp_relu
-  - network: gaussian_mlp
+  - network: mlp_relu
+  # - network: gaussian_mlp
   # - likelihood: gaussian
   # Disable logging by Hydra
   - override hydra/job_logging: none
@@ -18,6 +19,7 @@ output_dim: ${observation_dim}
 training:
   batch_size: 64
   max_epochs: 1000
+  num_workers: 8
 
 dataset:
   num_episodes: 20
