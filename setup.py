@@ -42,7 +42,9 @@ python_requires = "~=3.7"
 install_requires = [
     "torch",
     "functorch",  # needed for vmap
-    "laplace",
+    "laplace-torch",
+    "gpytorch",
+    # "laplace",
     "numpy",
     "matplotlib",
     "gymnasium",
