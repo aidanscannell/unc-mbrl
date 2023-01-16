@@ -1,0 +1,25 @@
+_target_: src.models.laplace.LaplaceDynamicsModel
+model: ${network}
+subset_of_weights: "all"
+# hessian_structure: "full"
+hessian_structure: "diag"
+# model:
+#   _target_: torch.nn.Sequential
+#     - _target_: torch.nn.Linear
+#       in_size: ${input_dim}
+#       out_size: ${output_dim} # TODO set this automatically
+#     - _target_: torch.nn.ReLU
+
+# in_size: ${input_dim}
+# out_size: ${output_dim} # TODO set this automatically
+# features:
+#   - 10
+#   - 10
+#   - 10
+#   - 10
+# activations:
+#   - _target_: torch.nn.ReLU
+#   - _target_: torch.nn.ReLU
+#   - _target_: torch.nn.ReLU
+#   - _target_: torch.nn.ReLU
+#   # - _target_: src.models.activations.Sin
